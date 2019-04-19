@@ -37,7 +37,7 @@ class Signin extends Component {
 
     rememberMeChange() {
         this.props.LoginForm({
-            rememberMe: !this.props.rememberMe
+            rememberMe: !this.props.login.rememberMe
         })
     }
 
