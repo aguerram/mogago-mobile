@@ -6,6 +6,8 @@ import style from '../styles/'
 import Icon from '@expo/vector-icons/Feather'
 import {connect} from 'react-redux'
 import {signin} from '../../data/app'
+import {login_id,loading_id} from '../../config/id'
+import {Alert} from '../../data/form'
 let deviceWidth = Dimensions.get('window').width
 
 class Signin extends Component {
@@ -41,8 +43,10 @@ class Signin extends Component {
     }
 
     render() {
+        let it = 'alabasta'
         let state = this.state;
         return (<KeyboardAvoidingView style={style.container} behavior="padding" enabled>
+            <Alert id={it} />
             <Input
                 placeholder='Email'
                 leftIcon={{type: 'feather', name: 'user'}}
@@ -53,9 +57,9 @@ class Signin extends Component {
                 style={{
                     fontSize: 14
                 }}
-
+                errorMessage={this.props.response[login_id.email]}
                 textContentType='emailAddress'
-                value={this.props.login.username}
+                value={this.props.login.email}
                 name="username"
                 onChangeText={(val) => this.emailInputChange(val)}
             />
@@ -67,7 +71,7 @@ class Signin extends Component {
                 }}
                 secureTextEntry
                 textContentType='password'
-                errorMessage=""
+                errorMessage={this.props.response[login_id.password]}
                 onChangeText={(val) => this.passwordInputChange(val)}
 
                 value={this.props.login.password}
@@ -88,7 +92,7 @@ class Signin extends Component {
                     top: 5
                 }}>
                     <Button
-                        loading={state.loading}
+                        loading={this.props.loading[loading_id.button+'login']}
                         icon={
                             <Icon
                                 name="log-in"
@@ -97,15 +101,7 @@ class Signin extends Component {
                             />
                         }
                         onPress={() => {
-                            this.setState({
-                                loading: true
-                            })
-
-                            setTimeout(() => {
-                                this.setState({
-                                    loading: false
-                                })
-                            }, 2000)
+                            this.props.LoginSubmit(this.props.login)
                         }} title=" Login"/>
                 </View>
             </View>
@@ -113,7 +109,4 @@ class Signin extends Component {
     }
 }
 
-const stateMapToProps = (state) => ({
-    login: state.login
-});
 export default signin(Signin);

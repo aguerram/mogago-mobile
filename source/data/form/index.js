@@ -1,2 +1,1 @@
-
-export const {Button} = require('./Button');
+export {default as Alert} from './alert'
