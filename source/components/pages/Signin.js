@@ -5,8 +5,7 @@ import {ToastAndroid} from 'react-native';
 import style from '../styles/'
 import Icon from '@expo/vector-icons/Feather'
 import {connect} from 'react-redux'
-
-import {LoginForm} from '../../redux/actions/LoginAction'
+import {signin} from '../../data/app'
 let deviceWidth = Dimensions.get('window').width
 
 class Signin extends Component {
@@ -117,7 +116,4 @@ class Signin extends Component {
 const stateMapToProps = (state) => ({
     login: state.login
 });
-const actionMapToProps = {
-    LoginForm
-}
-export default connect(stateMapToProps, actionMapToProps)(Signin);
+export default signin(Signin);
