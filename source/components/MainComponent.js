@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Text, View, Dimensions} from 'react-native'
 import MainRouter from '../router/'
-import SignIn from './pages/Signin'
+import Sign from './pages/Sign'
 import {Provider} from 'react-redux'
 import storeConfigure from '../redux/store'
 
@@ -21,7 +21,7 @@ class Main extends Component {
             <Provider store={store}>
                 <View style={{height: Dimensions.get('window').height}}>
                     {!this.state.isLoggedin ?
-                        <SignIn/> :
+                        <Sign/> :
                         <MainRouter />}
                 </View>
             </Provider>);

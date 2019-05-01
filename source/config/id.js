@@ -1,7 +1,6 @@
-export const login_id = {
-    'email':'login_id_email',
-    'password':'login_id_password',
-    'status':'login_id_status'
+export const request_id = {
+    login:'request_login_user',
+    signup:'request_signup_user'
 }
 
 export const loading_id = {

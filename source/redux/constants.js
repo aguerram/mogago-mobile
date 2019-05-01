@@ -11,9 +11,8 @@ const types = {
         LOGIN_FAILED: 'login:login-failed'
     },
     response:{
-        success:'response:success-res',
-        error:'response:error-res',
-        warning:'response:warning-res'
+        set:'response:set response',
+        unset:'response:unset response'
     },
     loading:{
         set:'loading:set',

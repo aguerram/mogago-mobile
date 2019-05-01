@@ -2,30 +2,21 @@ import types from '../constants'
 export const reducer = (state = {},action)=>{
     switch(action.type)
     {
-        case types.response.success:
+        case types.response.set:
             return {
                 ...state,
                 [action.payload.id]:{
-                    type:'success',
-                    message:action.payload.message
+                    type:action.payload.type,
+                    message:action.payload.message,
+                    data:action.payload.data
                 }
             }
-        case types.response.error:
-            return {
-                ...state,
-                [action.payload.id]:{
-                    type:'error',
-                    message:action.payload.message
-                }
-            }
-        case types.response.warning:
-            return {
-                ...state,
-                [action.payload.id]:{
-                    type:'warning',
-                    message:action.payload.message
-                }
-            }
+        case types.response.unset:
+            return {}
         default: return state;
     }
+}
+function resp(state,type)
+{
+
 }
