@@ -3,6 +3,22 @@ import types from '../../redux/constants'
 import config from '../../config/config'
 import store from '../../redux/store'
 import {request_id,loading_id} from "../../config/id";
+
+export const accesspoint = connect(
+    (state)=>{
+        return {
+            auth:state.auth
+        }
+    }
+    ,{
+        saveAuth:(payload)=>{
+            return {
+                type:types.auth.success,
+                payload
+            }
+        }
+    }
+)
 export const signup = connect(
     (state)=> {
         return{
@@ -57,13 +73,15 @@ export const signin = connect(
                 id:loading_id.button+'login',
                 responseHandler:request_id.login,
                 request:{
-                    url:'/game',
+                    url:'/login',
                     data:{
                         email:login.email,
                         password:login.password,
                         rememberMe:login.rememberMe
-                    }
-                }
+                    },
+
+                },
+                then:types.auth.success
             }
         }
             

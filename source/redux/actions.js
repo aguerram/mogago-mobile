@@ -19,6 +19,7 @@ function* actionHandler(rest, response, key = 'then') {
             rest.cb(response.data)
         }
         switch (response.status) {
+            case 401:
             case 422:
                 yield put({
                     type: types.response.set,
@@ -55,9 +56,28 @@ function* actionHandler(rest, response, key = 'then') {
             default:
                 console.log(`${response.status} returned wtf ?!!`)
         }
+
+        if (_.isArray(handler)) {
+            for (let i = 0; i < handler.length; i++) {
+                let hand = handler[i]
+                if (_.isObject(hand))
+                    yield put(hand)
+            }
+        } else if (_.isObject(handler)) {
+            yield put(handler)
+        } else if (_.isString(handler)) {
+            yield put(
+                {
+                    type: handler,
+                    payload:response.data
+                }
+            )
+        }
     } catch (e) {
         console.log('Error catching ', e)
     }
+
+
 }
 
 function* httpCall(config, rest) {
@@ -66,14 +86,14 @@ function* httpCall(config, rest) {
         yield put({
             type: types.response.unset
         })
-        console.log('Waiting ....')
+        //console.log('Waiting ....')
         let response = yield call(axios, config)
         yield actionHandler(rest, response)
-        console.log(response.data)
+        //console.log(response.data)
     } catch (error) {
         yield actionHandler(rest, error.response, 'catch');
     } finally {
-        console.log('Finished ....')
+        //console.log('Finished ....')
         yield loader(rest.id, 'unset')
     }
 }

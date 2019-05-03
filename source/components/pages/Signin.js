@@ -9,7 +9,6 @@ import {signin} from '../../data/app'
 import {request_id, loading_id} from '../../config/id'
 import {Alert} from '../../data/form'
 import {Actions} from 'react-native-router-flux'
-
 let deviceWidth = Dimensions.get('window').width
 import colors from '../../config/color'
 
@@ -25,6 +24,7 @@ class Signin extends Component {
         this.emailInputChange = this.emailInputChange.bind(this);
         this.passwordInputChange = this.passwordInputChange.bind(this);
         this.rememberMeChange = this.rememberMeChange.bind(this);
+
     }
 
     emailInputChange(val) {
@@ -42,11 +42,11 @@ class Signin extends Component {
     }
 
     rememberMeChange() {
-        this.props.LoginForm({
-            rememberMe: !this.props.login.rememberMe
+        this.setState({
+            checked:!this.state.checked
         })
-        get
     }
+
 
     render() {
         let state = this.state;
@@ -86,7 +86,7 @@ class Signin extends Component {
                 <View style={{position: 'absolute', left: 0}}>
                     <CheckBox
                         title="Remembre me"
-                        checked={this.props.login.rememberMe}
+                        checked={this.state.checked}
                         onPress={this.rememberMeChange}
                     />
                     <Button
@@ -112,7 +112,7 @@ class Signin extends Component {
                             />
                         }
                         onPress={() => {
-                            this.props.LoginSubmit(this.props.login)
+                            this.props.LoginSubmit({...this.props.login,rememberMe:this.state.checked})
                         }} title=" Login"/>
 
                 </View>

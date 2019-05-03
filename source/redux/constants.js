@@ -17,6 +17,10 @@ const types = {
     loading:{
         set:'loading:set',
         unset:'loading:unset'
+    },
+    auth:{
+        success:'auth:login-success',
+        failed:'auth:login-failed'
     }
 };
 export default types

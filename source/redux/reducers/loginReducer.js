@@ -4,9 +4,8 @@ export function reducer(state = {email: '', password: '',rememberMe:false}, {typ
         case types.login.LOGIN:
             return {
                 ...state,
-                email:payload.email?payload.email:state.email,
-                password:payload.password?payload.password:state.password,
-                rememberMe:payload.rememberMe?payload.rememberMe:state.rememberMe
+                email:payload.email,
+                password:payload.password
             };
         default:
             return state;

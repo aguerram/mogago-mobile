@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import {Text, View, Dimensions} from 'react-native'
-import MainRouter from '../router/'
-import Sign from './pages/Sign'
 import {Provider} from 'react-redux'
 import storeConfigure from '../redux/store'
+import AccessPoint from "./AccessPoint";
 
 let store = storeConfigure();
 store.saga()
@@ -19,11 +17,7 @@ class Main extends Component {
     render() {
         return (
             <Provider store={store}>
-                <View style={{height: Dimensions.get('window').height}}>
-                    {!this.state.isLoggedin ?
-                        <Sign/> :
-                        <MainRouter />}
-                </View>
+                <AccessPoint/>
             </Provider>);
     }
 }

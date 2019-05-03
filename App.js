@@ -18,7 +18,7 @@ export default class App extends Component {
   render() {
     if (this.state.isLoadingComplete) {
       return (
-        <View style={{marginTop:StatusBar.currentHeight }}>
+        <View >
           {Platform.OS === "ios" && <StatusBar barStyle="default" />}
           <Main />
         </View>

@@ -3,7 +3,8 @@ let reducers = {}
 let hocs = {
     login:require('./loginReducer'),
     response:require('./responseReducer'),
-    loading:require('./loadingReducer')
+    loading:require('./loadingReducer'),
+    auth:require('./authReducer')
 };
 for(var e in hocs){
     reducers[e] = hocs[e].reducer;

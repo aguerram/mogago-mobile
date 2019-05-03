@@ -4,10 +4,6 @@ import {Text} from "react-native-elements";
 import propTypes from 'prop-types'
 import {AlertStyle} from './styles'
 class Alert extends React.Component{
-    componentWillReceiveProps(nextProps, nextContext) {
-        console.log(nextProps)
-    }
-
     render()
     {
         if(this.props.response[this.props.id])

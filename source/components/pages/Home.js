@@ -8,7 +8,7 @@ class Home extends Component {
         this.state = {  }
     }
     render() { 
-        return (<View>
+        return (<View style={{flex:1}}>
             <Text>Hello this is home</Text>
             <Button title="Click ME" onPress = {()=>{
                 Actions.signin()
